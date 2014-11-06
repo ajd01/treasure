@@ -5,23 +5,80 @@
         <title>Treasure</title>
         <meta HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1" />
         <link rel="stylesheet" href="JQ/jquery.mobile-1.4.2.min.css" />
+        <link rel="stylesheet" href="CSS/treasure.min.css" />
+        <link rel="stylesheet" href="CSS/jquery.mobile.icons.min.css" />
 		    <script src="JQ/jquery-2.1.1.min.js"></script>
 		    <script src="JQ/jquery.mobile-1.4.2.js"></script>
         <link rel="stylesheet" href="CSS/index.css" />
-        <link rel="stylesheet" href="JQ/pape.css" />
 
     </head>
 
     <body>
     
-   	    <div data-role="page" id="paginaMapa" data-url="map-page">
+   	    <div data-role="page" id="inicio" data-url="map-page">
         	  <div data-role="header">
             	<h1>Treasure</h1>
             </div>
 
-               <button type="button" id="btn" value='Enterrar' class="ui-btn-a"></button>
+               <p>
+                <a href="#enterrar" class="ui-btn ui-shadow ui-corner-all">Enterrar</a>
+               </p>
 
-               <button type="button" id="btn" value='Encontrar' class="ui-btn-a"></button>
+               <p>
+                <a href="#encontrar" class="ui-btn ui-shadow ui-corner-all">Encontrar</a>
+               </p>
         </div>
+
+
+
+
+
+        <div data-role="page" id="enterrar" data-url="map-page">
+
+            <div data-role="header">
+                <a href="#inicio" data-role="button" data-icon="arrou-u" data-iconpos="notext" data-theme="b" data-inline="true">Regresar</a>
+                <h1>Enterrar</h1>
+            </div>
+
+            <script type="text/javascript" charset="utf-8">
+                // Wait for device API libraries to load
+                document.addEventListener("deviceready", onDeviceReady, false);
+                var watchID = null;
+
+                function onDeviceReady() {
+                    var options = { timeout: 30000 };
+                    watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+                }
+
+                function onSuccess(position) {
+                    var element = document.getElementById('geolocation');
+                    element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
+                                        'Longitude: ' + position.coords.longitude     + '<br />' +
+                                        '<hr />'      + element.innerHTML;
+                }
+
+                function onError(error) {
+                    alert('code: '    + error.code    + '\n' +
+                          'message: ' + error.message + '\n');
+                }
+            </script>
+            
+            <p id="geolocation">Watching geolocation...</p>
+
+        </div>
+
+
+
+
+
+
+        <div data-role="page" id="encontrar" data-url="map-page">
+            <div data-role="header">
+                <a href="#inicio" data-role="button" data-icon="arrou-u" data-iconpos="notext" data-theme="b" data-inline="true">Regresar</a>
+                <h1>Encontrar</h1>
+            </div>
+            <h1>A enCONtrar MAno!</h1>
+        </div>
+
     </body>
 </html>
